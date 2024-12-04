@@ -16,5 +16,5 @@
 docker run mxvc/fee-tool:latest
 
 或者替换国内镜像
-
+registry.cn-hangzhou.aliyuncs.com/mxvc/fee-tool
 
