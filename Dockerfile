@@ -3,15 +3,8 @@ FROM node:16-alpine as web
 
 WORKDIR /temp
 
-# 缓存包
-
-ADD web/package.json .
-RUN npm install
-
-
-# 正式打包
 ADD web/ ./
-RUN npm run build
+RUN npm install && npm run build
 
 # 阶段2 打jar包
 FROM maven:3-openjdk-17 as java
@@ -20,7 +13,6 @@ FROM maven:3-openjdk-17 as java
 WORKDIR /temp
 ADD . ./
 COPY --from=web /temp/dist/ src/main/resources/static/
-
 
 RUN mvn clean  package -q  -DskipTests=true &&  mv target/app.jar /home/app.jar
 
