@@ -7,7 +7,14 @@
 
 # 如何安装使用
 
-如果下载脚本，可以使用 https://doget.nocsdn.com 加速下载
+## 1 下载 release的zip包
+如果下载慢，可以使用 https://doget.nocsdn.com 加速下载
 
+## 2 使用Docker
+
+镜像
+docker run mxvc/fee-tool:latest
+
+或者替换国内镜像
 
 
