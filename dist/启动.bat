@@ -15,6 +15,7 @@ if not exist jdk (
 
    echo rename jdk dir name ....
    dir /b | find "jdk-21." >  jdk_dir_name.txt
+
    for /f "delims=[" %%i in (jdk_dir_name.txt) do (
        echo %%i
        ren %%i jdk
