@@ -18,14 +18,7 @@ FROM maven:3-openjdk-17 as java
 
 # 缓存jar包
 WORKDIR /temp
-ADD pom.xml ./pom.xml
-ADD src/main/java/io/github/mxvc/BootApplication.java .src/main/java/io/github/mxvc/BootApplication.java
-
-RUN mvn  package -q -DskipTests=true  &&  rm -rf *
-
-# 正式打包
-ADD src ./src
-ADD pom.xml ./pom.xml
+ADD . ./
 COPY --from=web /temp/dist/ src/main/resources/static/
 
 
