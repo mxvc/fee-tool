@@ -13,7 +13,7 @@
 ## 2 使用Docker
 
 镜像
-docker run mxvc/fee-tool:latest
+docker run -p 8080:8080 mxvc/fee-tool:latest
 
 或者替换国内镜像
 registry.cn-hangzhou.aliyuncs.com/mxvc/fee-tool
