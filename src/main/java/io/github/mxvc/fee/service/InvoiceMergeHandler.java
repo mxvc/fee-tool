@@ -49,7 +49,6 @@ public class InvoiceMergeHandler {
         PDPage page = new PDPage(A4);
         doc.addPage(page);
         PDPageContentStream ps = new PDPageContentStream(doc, page);
-        ps.setStrokingColor(0xe8, 0xe8, 0xe8);
 
 
         float x = 0;
@@ -57,12 +56,16 @@ public class InvoiceMergeHandler {
 
         // 第一个文件
         y = drawFile(doc, ps, f1, x, y);
-        ps.drawLine(0, y, A4.getWidth(), y=y+4);
+
+
+        ps.drawLine(0, y, A4.getWidth(), y++);
+
+
 
 
         // 第二个文件
         y = drawFile(doc, ps, f2, x, y);
-        ps.drawLine(0, y, A4.getWidth(),  y=y+4);
+        ps.drawLine(0, y, A4.getWidth(),  y++);
 
         ps.close();
     }
