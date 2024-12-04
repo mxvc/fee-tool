@@ -27,7 +27,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: mv -r web/dist/* src/main/resources/static/ && mvn  -q package
+        run: cp -r  web/dist/* src/main/resources/static/ && mvn  -q package
 
       - name: Release
         uses: softprops/action-gh-release@v2
