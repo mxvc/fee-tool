@@ -13,11 +13,13 @@ jobs:
       contents: write
 
     steps:
+      - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
       - name: build web
         run: cd web && npm install && npm run build
 
-      - uses: actions/checkout@v4
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
