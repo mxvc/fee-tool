@@ -11,6 +11,7 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import java.util.List;
 
 /**
  * 合并打印，节约纸张
+ * 注意，坐标是右上角那个区， 所以00 标识页面的左下角
  */
 @Slf4j
 @Component
@@ -26,8 +28,7 @@ public class InvoiceMergeHandler {
 
 
     public static final PDRectangle A4 = PDRectangle.A4;
-
-
+    public static final int LINE_WIDTH = 2;
 
 
     public void start(List<Invoice> files, OutputStream outputStream) throws IOException {
@@ -45,11 +46,14 @@ public class InvoiceMergeHandler {
         doc.save(outputStream);
     }
 
+
     private void drawFile(PDDocument doc, Invoice file1, Invoice file2) throws IOException {
         PDPage page = new PDPage(A4);
         doc.addPage(page);
         PDPageContentStream ps = new PDPageContentStream(doc, page);
 
+        ps.setLineWidth(LINE_WIDTH);
+        ps.setStrokingColor(Color.LIGHT_GRAY);
 
         float x = 0;
         float y = 0;
@@ -58,14 +62,12 @@ public class InvoiceMergeHandler {
         y = drawFile(doc, ps, file1, x, y);
 
 
-        ps.drawLine(0, y, A4.getWidth(), y++);
-
-
+        ps.drawLine(0, y, A4.getWidth(), y = y + LINE_WIDTH);
 
 
         // 第二个文件
         y = drawFile(doc, ps, file2, x, y);
-        ps.drawLine(0, y, A4.getWidth(),  y++);
+        ps.drawLine(0, y, A4.getWidth(), y);
 
         ps.close();
     }
@@ -77,7 +79,7 @@ public class InvoiceMergeHandler {
         byte[] imgFile = pdf2img(f);
 
         // 写入图片
-        PDImageXObject pimg = PDImageXObject.createFromByteArray( doc,imgFile, f.getName());
+        PDImageXObject pimg = PDImageXObject.createFromByteArray(doc, imgFile, f.getName());
 
         float width = pimg.getWidth();
         float height = pimg.getHeight();
@@ -89,7 +91,6 @@ public class InvoiceMergeHandler {
 
 
         ps.drawImage(pimg, x, y, w, h);
-
 
 
         return y + h;
@@ -106,7 +107,8 @@ public class InvoiceMergeHandler {
 
         doc.close();
         byte[] bytes = os.toByteArray();
-        os.close();;
+        os.close();
+        ;
         return bytes;
     }
 
