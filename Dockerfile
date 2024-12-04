@@ -14,7 +14,7 @@ WORKDIR /temp
 ADD . ./
 COPY --from=web /temp/dist/ src/main/resources/static/
 
-RUN mvn clean  package -q  -DskipTests=true &&  mv target/app.jar /home/app.jar
+RUN mvn clean  package -q  -DskipTests=true &&  mv target/*.jar /home/app.jar
 
 # 阶段3 运行环境
 FROM openjdk:17
