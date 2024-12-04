@@ -19,7 +19,7 @@ FROM maven:3-openjdk-17 as java
 # 缓存jar包
 WORKDIR /temp
 ADD pom.xml ./pom.xml
-ADD src/main/java/cn/moon/BootApplication.java ./src/main/java/cn/crec/BootApplication.java
+ADD src/main/java/io/github/mxvc/BootApplication.java .src/main/java/io/github/mxvc/BootApplication.java
 
 RUN mvn  package -q -DskipTests=true  &&  rm -rf *
 

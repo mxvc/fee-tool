@@ -1,6 +1,6 @@
-package cn.moon.fee.dao;
+package io.github.mxvc.fee.dao;
 
-import cn.moon.fee.entity.Invoice;
+import io.github.mxvc.fee.entity.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

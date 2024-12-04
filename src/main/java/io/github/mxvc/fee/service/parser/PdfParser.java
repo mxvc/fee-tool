@@ -1,6 +1,6 @@
-package cn.moon.fee.service.parser;
+package io.github.mxvc.fee.service.parser;
 
-import cn.moon.fee.entity.Invoice;
+import io.github.mxvc.fee.entity.Invoice;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;

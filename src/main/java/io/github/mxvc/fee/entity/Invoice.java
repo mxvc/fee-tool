@@ -1,4 +1,4 @@
-package cn.moon.fee.entity;
+package io.github.mxvc.fee.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

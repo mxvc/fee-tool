@@ -1,4 +1,4 @@
-package cn.moon;
+package io.github.mxvc;
 
 import cn.moon.lang.web.SpringTool;
 import lombok.extern.slf4j.Slf4j;

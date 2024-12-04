@@ -1,4 +1,4 @@
-package cn.moon.fee.tool;
+package io.github.mxvc.fee.tool;
 
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 

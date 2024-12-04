@@ -1,4 +1,4 @@
-package cn.moon.fee.controller;
+package io.github.mxvc.fee.controller;
 
 
 import cn.moon.lang.web.Result;

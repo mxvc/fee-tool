@@ -1,9 +1,9 @@
-package cn.moon.fee.service.parser;
+package io.github.mxvc.fee.service.parser;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.extra.qrcode.BufferedImageLuminanceSource;
-import cn.moon.fee.entity.Invoice;
+import io.github.mxvc.fee.entity.Invoice;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;
@@ -13,7 +13,6 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDResources;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-import org.springframework.stereotype.Component;
 
 import java.awt.image.BufferedImage;
 import java.math.BigDecimal;
@@ -23,7 +22,7 @@ import java.util.List;
 public class QrcodeParser {
 
 
-    public  static Invoice parse(byte[] file,Invoice invoice) throws Exception {
+    public  static Invoice parse(byte[] file, Invoice invoice) throws Exception {
         List<BufferedImage> imageList = findQrCode(file);
 
         String text = null;
