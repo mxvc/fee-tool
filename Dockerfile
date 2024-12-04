@@ -1,6 +1,5 @@
 # 阶段1 前端构建
 FROM node:16-alpine as web
-ADD asserts/.npmrc  /root/
 
 WORKDIR /temp
 
@@ -16,7 +15,6 @@ RUN npm run build
 
 # 阶段2 打jar包
 FROM maven:3-openjdk-17 as java
-ADD asserts/settings.xml /root/.m2/
 
 # 缓存jar包
 WORKDIR /temp
