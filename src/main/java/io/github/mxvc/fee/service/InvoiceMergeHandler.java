@@ -45,7 +45,7 @@ public class InvoiceMergeHandler {
         doc.save(outputStream);
     }
 
-    private void drawFile(PDDocument doc, Invoice f1, Invoice f2) throws IOException {
+    private void drawFile(PDDocument doc, Invoice file1, Invoice file2) throws IOException {
         PDPage page = new PDPage(A4);
         doc.addPage(page);
         PDPageContentStream ps = new PDPageContentStream(doc, page);
@@ -55,7 +55,7 @@ public class InvoiceMergeHandler {
         float y = 0;
 
         // 第一个文件
-        y = drawFile(doc, ps, f1, x, y);
+        y = drawFile(doc, ps, file1, x, y);
 
 
         ps.drawLine(0, y, A4.getWidth(), y++);
@@ -64,7 +64,7 @@ public class InvoiceMergeHandler {
 
 
         // 第二个文件
-        y = drawFile(doc, ps, f2, x, y);
+        y = drawFile(doc, ps, file2, x, y);
         ps.drawLine(0, y, A4.getWidth(),  y++);
 
         ps.close();
