@@ -59,28 +59,7 @@ public class InvoiceController {
 
     }
 
-    @PostMapping("parseLink")
-    public Result upload(String content) throws Exception {
-        if(StrUtil.isBlank(content)){
-            return Result.err().msg("内容不能为空");
-        }
 
-        Map<String, byte[]> map = LinkDownloader.download(content);
-        for (Map.Entry<String, byte[]> e : map.entrySet()) {
-            String url = e.getKey();
-
-            String name = FileNameUtil.mainName(url);
-            if(name == null){
-                name = StrUtil.subAfter(url, "/",true);
-            }
-
-            service.saveUpload(e.getValue(), name, UserTool.cur());
-        }
-
-
-        return Result.ok();
-
-    }
 
 
     @GetMapping({"delete"})
