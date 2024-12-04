@@ -1,0 +1,38 @@
+<assembly >
+    <id>win64</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <!-- 从目标目录拷贝文件去压缩 -->
+        <fileSet>
+            <directory>target</directory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+
+
+        <!-- 从源目录拷贝文件去压缩 -->
+        <fileSet>
+            <directory>dist</directory>
+            <includes>
+                <include>7z.*</include>
+                <include>wget.exe</include>
+            </includes>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+        <!-- 从源目录拷贝文件去压缩 -->
+        <fileSet>
+            <directory>dist</directory>
+            <includes>
+                <include>*.bat</include>
+            </includes>
+            <outputDirectory>/</outputDirectory>
+            <!-- 换行符使用win,否则bat运行错误 https://blog.csdn.net/TankRuning/article/details/107376242-->
+            <lineEnding>windows</lineEnding>
+        </fileSet>
+    </fileSets>
+</assembly>

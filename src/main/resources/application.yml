@@ -1,0 +1,25 @@
+
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: zh_CN
+  datasource:
+    driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
+    url: jdbc:derby:data;create=true
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: false
+    naming.physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+  servlet:
+    multipart:
+      maxFileSize: 50MB
+      maxRequestSize: 100MB
+server:
+  port: 8080
+
+
+
+
