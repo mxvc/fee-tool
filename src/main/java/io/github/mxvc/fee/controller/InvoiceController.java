@@ -8,16 +8,19 @@ import io.github.mxvc.fee.entity.Invoice;
 import io.github.mxvc.fee.service.ExportExcelHandler;
 import io.github.mxvc.fee.service.InvoiceMergeHandler;
 import io.github.mxvc.fee.service.InvoiceService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
 
+@Slf4j
 @RestController
 @RequestMapping("invoice")
 public class InvoiceController {
@@ -87,9 +90,15 @@ public class InvoiceController {
     public void mergePdf(String ids, HttpServletResponse response) throws Exception {
         List<Invoice> list = service.findAllById(parseIds(ids));
 
-        ServletTool.setDownloadFileHeader(String.format("合并发票_方便打印_%d张.pdf", list.size()), response);
+        String filename = String.format("合并发票_方便打印_%d张.pdf", list.size());
+        ServletTool.setDownloadFileHeader(filename, response);
 
-        invoiceMergeHandler.start(list, response.getOutputStream());
+        ServletOutputStream os = response.getOutputStream();
+        invoiceMergeHandler.start(list, os);
+        os.flush();
+        os.close();
+
+        log.info("导出完成");
     }
 
 
