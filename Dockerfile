@@ -17,7 +17,10 @@ COPY --from=web /temp/dist/ src/main/resources/static/
 RUN mvn clean  package -q  -DskipTests=true &&  mv target/*.jar /home/app.jar
 
 # 阶段3 运行环境
-FROM openjdk:17
+FROM openjdk:17-alpine
+RUN apk add --update ttf-dejavu fontconfig && rm -rf /var/cache/apk/*
+ADD asserts/fonts/ /usr/share/fonts/chinese/
+ADD asserts/fonts/ /$JAVA_HOME/jre/lib/fonts/
 
 COPY --from=java /home/app.jar /home/app.jar
 
